@@ -5,7 +5,15 @@ import { BrowserRouter, Route } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import { logout, login } from "./actions/auth";
+
 import store from "./store";
+
+if (localStorage.sureEduCBTJWT) {
+  store.dispatch(login());
+} else {
+  store.dispatch(logout());
+}
 
 ReactDOM.render(
   <BrowserRouter>

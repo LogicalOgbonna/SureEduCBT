@@ -2,9 +2,6 @@ import React from "react";
 import { reduxForm, Field, FieldArray } from "redux-form";
 import { connect } from "react-redux";
 
-import SelectListGroup from "../../common/SelectListGroup";
-// import Select from "react-select";
-
 class CreateQuestion extends React.Component {
   state = {
     questionType: "",
@@ -87,12 +84,14 @@ const renderFormField = ({
   if (type === "select") {
     return (
       <React.Fragment>
-        <label htmlFor={input.id} class="form-control-label">
+        <label htmlFor={input.id} className="form-control-label">
           {label}
         </label>
-        <select class="form-control" {...input}>
+        <select className="form-control" {...input}>
           {options.map(option => (
-            <option value={option.value}>{option.label} </option>
+            <option key={option.label} value={option.value}>
+              {option.label}{" "}
+            </option>
           ))}
         </select>
       </React.Fragment>
@@ -102,34 +101,34 @@ const renderFormField = ({
   if (type === "textarea") {
     return (
       <React.Fragment>
-        <div class="col-lg-12">
-          <label htmlFor={input.id} class="form-control-label">
+        <div className="col-lg-12">
+          <label htmlFor={input.id} className="form-control-label">
             {label}
           </label>
         </div>
-        <div class="col-lg-12">
+        <div className="col-lg-12">
           <textarea
-            class="form-control"
+            className="form-control"
             type={type}
             name="question"
             placeholder="Type your questions here"
             rows={row}
             {...input}
           />
-          <span class="form-text text-muted">{info}</span>
+          <span className="form-text text-muted">{info}</span>
         </div>
       </React.Fragment>
     );
   }
   if (type === "radio") {
     return (
-      <div class="k-radio-inline col-lg-4 form-group-sub">
+      <div className="k-radio-inline col-lg-4 form-group-sub">
         <div style={{ marginTop: "25px" }} />
-        <label class=" form-control-label k-radio">
+        <label className=" form-control-label k-radio">
           <input
             type={type}
             name={name}
-            class="k-radio"
+            className="k-radio"
             style={{ paddingTop: "10px" }}
           />
           {label}
@@ -138,24 +137,24 @@ const renderFormField = ({
       </div>
     );
   }
-  // if (type === "text") {
-  return (
-    <div class="form-group row">
-      <div class="col-lg-12">
-        <label class="form-control-label" htlmfor={input.id}>
-          {label}
-        </label>
-        <input
-          type={type}
-          name="mark"
-          class="form-control"
-          placeholder={placeholder}
-          {...input}
-        />
+  if (type === "text") {
+    return (
+      <div className="form-group row">
+        <div className="col-lg-12">
+          <label className="form-control-label" htlmfor={input.id}>
+            {label}
+          </label>
+          <input
+            type={type}
+            name="mark"
+            className="form-control"
+            placeholder={placeholder}
+            {...input}
+          />
+        </div>
       </div>
-    </div>
-  );
-  // }
+    );
+  }
 };
 
 const renderAdd = (item, index, fields) => {
@@ -167,52 +166,52 @@ const renderAdd = (item, index, fields) => {
     { label: "D", value: "D" },
     { label: "E", value: "E" }
   ];
-  const onClick = e => {
-    e.preventDefault();
-    fields.remove(index);
-  };
+  // const onClick = e => {
+  //   e.preventDefault();
+  //   fields.remove(index);
+  // };
 
   return (
     <React.Fragment key={index}>
-      <div class="form-group row">
-        <div class="col-lg-4 form-group-sub">
+      <div className="form-group row">
+        <div className="col-lg-4 form-group-sub">
           <Field
             component={renderFormField}
             type="select"
             label="Select Option: *"
             options={answerOption}
-            name="option"
+            name={item.toString() + "option"}
             placeholder="Select"
           />
         </div>
 
-        <div class="col-lg-4 form-group-sub">
+        <div className="col-lg-4 form-group-sub">
           <Field
             component={renderFormField}
             label="Answer: *"
             type="text"
-            name="answers"
+            name={item.toString() + "answer"}
             placeholder="Enter an anser"
           />
         </div>
 
-        <div class="k-radio-inline col-lg-4 form-group-sub">
+        <div className="k-radio-inline col-lg-4 form-group-sub">
           <div style={{ marginTop: "25px" }} />
           <Field
             component={renderFormField}
             label="Corect?:"
-            name="isCorect"
+            name={item.toString() + "isCorect"}
             type="radio"
           />
         </div>
       </div>
-      <button
-        class="btn"
+      {/* <button
+        className="btn"
         style={{ paddingTop: "0px", float: "right", color: "red" }}
         onClick={onClick}
       >
         Remove
-      </button>
+      </button> */}
     </React.Fragment>
   );
 };
@@ -230,34 +229,34 @@ const renderAddList = props => {
       <button
         type="button"
         style={{ backgroundColor: "#030b35" }}
-        class="btn btn-brand btn-elevate btn-pill"
+        className="btn btn-brand btn-elevate btn-pill"
         onClick={addItem}
       >
-        <i class="flaticon-bell" /> Add Option
+        <i className="flaticon-bell" /> Add Option
       </button>
     </React.Fragment>
   );
 };
 const renderForm = props => {
   return (
-    <form class="k-form ">
+    <form className="k-form ">
       <div className="row">
-        <div class="col-lg-6">
+        <div className="col-lg-6">
           {/* <!--begin::Portlet--> */}
-          <div class="k-portlet">
-            <div class="k-portlet__head">
-              <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">Create Question</h3>
+          <div className="k-portlet">
+            <div className="k-portlet__head">
+              <div className="k-portlet__head-label">
+                <h3 className="k-portlet__head-title">Create Question</h3>
               </div>
             </div>
 
             {/* <!--begin::Form--> */}
 
-            <div class="k-portlet__body">
-              <div class="form-group row">
-                <div class="col-lg-6 form-group-sub">
-                  <div class="form-group row">
-                    <div class="col-lg-12 form-group-sub">
+            <div className="k-portlet__body">
+              <div className="form-group row">
+                <div className="col-lg-6 form-group-sub">
+                  <div className="form-group row">
+                    <div className="col-lg-12 form-group-sub">
                       <Field
                         component={renderFormField}
                         type="select"
@@ -270,9 +269,9 @@ const renderForm = props => {
                 </div>
               </div>
 
-              <div class="form-group row">
-                <div class="col-lg-12">
-                  <div class="form-group row">
+              <div className="form-group row">
+                <div className="col-lg-12">
+                  <div className="form-group row">
                     <Field
                       component={renderFormField}
                       placeholder="Type your question"
@@ -286,60 +285,11 @@ const renderForm = props => {
                   </div>
                 </div>
               </div>
-
-              {/* {dynamic.map((val, id) => (
-                        <div key={id} class="form-group row">
-                          <div class="col-lg-4 form-group-sub">
-                            {console.log(val, id)}
-                            <SelectListGroup
-                              name="options"
-                              value={options}
-                              options={answerOption}
-                              onChange={e => this.onChange(e, id, "options")}
-                              label="Select Option: *"
-                            />
-                          </div>
-                          <div class="col-lg-4 form-group-sub">
-                            <label class="form-control-label">Answer: *</label>
-                            <input
-                              type="text"
-                              name="answers"
-                              onChange={e => this.onChange(e, id, "answers")}
-                              class="form-control"
-                              placeholder="Enter an answer"
-                              value={answers}
-                            />
-                          </div>
-                          <div class="k-radio-inline col-lg-4 form-group-sub">
-                            <div style={{ marginTop: "25px" }} />
-                            <label class=" form-control-label k-radio">
-                              <input
-                                type="radio"
-                                name="isCorect"
-                                class="k-radio"
-                                onChange={e => this.onChange(e, id, "isCorect")}
-                                value={isCorect}
-                                style={{ paddingTop: "10px" }}
-                              />
-                              Correct ?:
-                              <span />
-                            </label>
-                          </div>
-                        </div>
-                      ))} */}
-              {/* <button
-                type="button"
-                style={{ backgroundColor: "#030b35" }}
-                class="btn btn-brand btn-elevate btn-pill"
-                // onClick={this.addOption}
-              >
-                <i class="flaticon-bell" /> Add Option
-              </button> */}
-              <FieldArray component={renderAddList} />
+              <FieldArray name="addOption" component={renderAddList} />
               <br />
               <br />
-              <div class="form-group row">
-                <div class="col-lg-12">
+              <div className="form-group row">
+                <div className="col-lg-12">
                   <Field
                     component={renderFormField}
                     type="text"
@@ -354,19 +304,19 @@ const renderForm = props => {
             {/* <!--end::Form--> */}
           </div>
         </div>
-        <div class="col-lg-6">
+        <div className="col-lg-6">
           {/* <!--begin::Portlet--> */}
-          <div class="k-portlet">
-            <div class="k-portlet__head">
-              <div class="k-portlet__head-label">
-                <h3 class="k-portlet__head-title">Question Image</h3>
+          <div className="k-portlet">
+            <div className="k-portlet__head">
+              <div className="k-portlet__head-label">
+                <h3 className="k-portlet__head-title">Question Image</h3>
               </div>
             </div>
 
             <div className="form-group row">
               <div className="col-lg-12">
-                <div class="k-portlet__body">
-                  <label class=" form-control-label">
+                <div className="k-portlet__body">
+                  <label className=" form-control-label">
                     Select Question Image
                   </label>
                   <input
@@ -386,19 +336,19 @@ const renderForm = props => {
       <div className="row">
         <div className="col-lg-6" />
         <div className="col-lg-6">
-          <div class="k-portlet__foot">
-            <div class="k-form__actions">
+          <div className="k-portlet__foot">
+            <div className="k-form__actions">
               <button
                 style={{ float: "right" }}
                 type="submit"
-                class="btn btn-primary"
+                className="btn btn-primary"
               >
                 Submit
               </button>
               {/* <button
                         style={{ float: "left" }}
                         type="submit"
-                        class="btn btn-primary"
+                        className="btn btn-primary"
                       >
                         Submit
                       </button> */}

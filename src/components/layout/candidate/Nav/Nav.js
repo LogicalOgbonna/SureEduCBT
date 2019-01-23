@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
-import { logout } from "../../../../actions/auth";
 import { connect } from "react-redux";
 
-const Nav = ({ logout }) => {
+const Nav = props => {
   const userNav = (
     <div
       className="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper"
@@ -280,9 +279,13 @@ const Nav = ({ logout }) => {
                   </Link>
                 </li>
                 <li className="k-nav__item k-nav__item--custom k-margin-t-15">
-                  <button onClick={() => logout()} className="btn btn-primary">
+                  <Link
+                    to="custom_user_login-v2.html"
+                    target="_blank"
+                    className="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold"
+                  >
                     Sign Out
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -296,7 +299,4 @@ const Nav = ({ logout }) => {
   return <React.Fragment>{userNav}</React.Fragment>;
 };
 
-export default connect(
-  null,
-  { logout }
-)(Nav);
+export default Nav;

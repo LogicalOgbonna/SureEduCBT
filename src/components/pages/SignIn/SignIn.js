@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import validator from "validator"
+import { connect } from 'react-redux';
+import { login } from '../../../actions/auth';
+
 
 import "./SignIn.css";
 
 class SignIn extends React.Component {
 	state = {
     data: {
-      username: "",
+      email: "",
       password: ""
     },
     loading: false,
@@ -28,19 +31,35 @@ class SignIn extends React.Component {
     if(!data.password) errors.password = "Can't be blank  "
     return errors
   }
-
+	
   onSubmit = (e) => {
+		const { login, history} = this.props;
+
+		const user = {
+			user: {
+				name: "Ogbonna Arinze",
+				email: "arinze.ogbonna.198717@unn.edu.ng",
+				role: "Coordinator",
+				isAuthenticated: true
+			},
+	
+			candidate: {
+				name: "Ifeanyi Agu",
+				isAuthenticated: false
+			}
+		};
 		e.preventDefault();
 		const errors = this.validate(this.state.data);
 		this.setState({errors});
 		if(Object.keys(errors).length === 0){
-			console.log(this.state.data);
 			this.setState({loading: true})
+			login(user)
+			history.push("/dashboard");
 		}
 		
   }
   render() {
-    const { loading, data, errors } = this.state;
+    const { data, errors, loading } = this.state;
     return (
       <React.Fragment>
         <div className="k-grid k-grid--ver k-grid--root k-page">
@@ -55,10 +74,6 @@ class SignIn extends React.Component {
 							<Link to="#">
 								<img src="../assets/media/logos/logo-5.png" alt="" />
 							</Link>
-						</div>
-						<div className="k-login-v2__head-signup">
-							<span>Don't have an account?</span>
-							<Link to="#" className="k-link k-font-brand">Sign Up</Link>
 						</div>
 					</div>
 
@@ -96,23 +111,16 @@ class SignIn extends React.Component {
 									</div>
 									
 								<div className="k-login-v2__body-action k-login-v2__body-action--brand" style={{marginTop: "3rem", padding: "0"}}>
-									<Link to="/signup" className="k-link k-link--brand">
+									<Link to="/forgotpassword" className="k-link k-link--brand">
 										Forgot Password ?
 									</Link>
-									{
-										this.state.loading ? 
+								
 										<button 
-											disabled 
+											disabled={loading}
 											className="btn btn-pill btn-brand btn-elevate"
 											>
 											Sign In
-										</button>: 
-										<button  
-										className="btn btn-pill btn-brand btn-elevate"
-										>
-										Sign In
-										</button> 
-								}
+										</button>
 								</div>
 								</form>
 
@@ -122,31 +130,7 @@ class SignIn extends React.Component {
 
 								{/* <!--end::Action--> */}
 
-								{/* <!--begin::Separator--> */}
-								<div className="k-login-v2__body-separator">
-									<div className="k-separator k-separator--space-lg  k-separator--border-solid" style={{margin: "1.5rem 1rem"}}></div>
-								</div>
-
-								{/* <!--end::Separator--> */}
-								<h3 className="k-login-v2__body-subtitle">Or sign with social account</h3>
-
-								{/* <!--begin::Options--> */}
-								<div className="k-login-v2__body-options">
-									<Link to="#" className="btn k-font-primary k-login-v2__body-option--primary">
-										<i className="fab fa-facebook-f k-font-primary"></i>
-										Facebook
-									</Link>
-									<Link to="#" className="btn k-font-info k-login-v2__body-option--info">
-										<i className="fab fa-twitter k-font-info"></i>
-										Twitter
-									</Link>
-									<Link to="#" className="btn k-font-warning k-login-v2__body-option--warning">
-										<i className="fab fa-google k-font-warning"></i>
-										Google
-									</Link>
-								</div>
-
-								{/* <!--end::Options--> */}
+								
 							</div>
 						</div>
 
@@ -187,4 +171,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+export default connect(null, { login })(SignIn);
