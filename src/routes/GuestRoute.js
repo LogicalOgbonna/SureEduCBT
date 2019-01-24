@@ -2,14 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
-const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      !isAuthenticated ? <Component {...props} /> : <Redirect to="/dashboard" />
-    }
-  />
-);
+const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        !isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/dashboard" />
+        )
+      }
+    />
+  );
+};
 
 GuestRoute.propTypes = {
   component: PropTypes.func.isRequired,

@@ -7,14 +7,14 @@ import {
   RegisterOrganization,
   CreateQuestion,
   SignIn
-} from "./components/pages";
+} from "./components/pages/user";
 import { Nav, Footer, Aside } from "./components/layout/user";
 import {
   CandidateFooter,
   CandidateNav,
   CandidateAside
 } from "./components/layout/candidate";
-import { GuestRoute, UserRoute } from "./routes";
+import { GuestRoute, UserRoute, CandidateRoute } from "./routes";
 
 class App extends Component {
   render() {
@@ -33,38 +33,37 @@ class App extends Component {
           location={location}
           exact
           component={SignIn}
-          isAuthenticated={
-            user ? user.isAuthenticated : candidate.isAuthenticated
-          }
+          isAuthenticated={user.isAuthenticated}
         />
         <UserRoute
           path="/register-organization"
           location={location}
           exact
           component={RegisterOrganization}
-          isAuthenticated={
-            user ? user.isAuthenticated : candidate.isAuthenticated
-          }
+          isAuthenticated={user.isAuthenticated}
         />
 
-        {/* TODO: Make Dashboard a Private Route */}
         <UserRoute
           path="/dashboard"
           location={location}
           exact
           component={Dashboard}
-          isAuthenticated={
-            user ? user.isAuthenticated : candidate.isAuthenticated
-          }
+          isAuthenticated={user.isAuthenticated}
         />
         <UserRoute
           path="/create-question"
           location={location}
           exact
           component={CreateQuestion}
-          isAuthenticated={
-            user ? user.isAuthenticated : candidate.isAuthenticated
-          }
+          isAuthenticated={user.isAuthenticated}
+        />
+
+        <CandidateRoute
+          path="/candidate-dashboard"
+          location={location}
+          exact
+          component={SignIn}
+          isAuthenticated={candidate.isAuthenticated}
         />
         {user && user.isAuthenticated && <Footer />}
         {candidate && candidate.isAuthenticated && <CandidateFooter />}

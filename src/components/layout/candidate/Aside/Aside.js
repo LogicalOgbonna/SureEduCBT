@@ -16,54 +16,9 @@ const Aside = ({ role }) => {
         icon="flaticon-layers"
         name="Register Organization"
       />
-      <AsideLink
-        link="/create-coordinator"
-        icon="flaticon2-gear"
-        name="Create Coordinatorn"
-      />
-      <AsideLink
-        link="/create-examination"
-        icon="flaticon2-gear"
-        name="Create Examination"
-      />
-
-      <AsideLink link="/create-tag" icon="flaticon2-gear" name="Create Tag" />
-
-      <AsideLink link="/create-test" icon="flaticon2-gear" name="Create Test" />
     </React.Fragment>
   );
 
-  const ExaminerAside = (
-    <React.Fragment>
-      <AsideLink link="/dashboard" icon="flaticon-layers" name="Dashboard" />
-
-      <AsideLink
-        link="/approve-test"
-        icon="flaticon2-gear"
-        name="Approve Test"
-      />
-
-      <AsideLink
-        link="/register-candidate"
-        icon="flaticon2-gear"
-        name="Register Candidate"
-      />
-    </React.Fragment>
-  );
-
-  const CoordinatorAside = (
-    <React.Fragment>
-      <AsideLink link="/dashboard" icon="flaticon-layers" name="Dashboard" />
-
-      <AsideLink
-        link="/create-question"
-        icon="flaticon2-gear"
-        name="Create Question"
-      />
-
-      <AsideLink link="/create-test" icon="flaticon2-gear" name="Create Test" />
-    </React.Fragment>
-  );
   return (
     <React.Fragment>
       {/* <!-- begin:: Header Mobile --> */}
@@ -136,20 +91,12 @@ const Aside = ({ role }) => {
                 data-kmenu-scroll="1"
                 data-kmenu-dropdown-timeout="500"
               >
-                <ul className="k-menu__nav ">
-                  {role === "Admin" && AdminAside}
-                  {role === "Coordinator" && CoordinatorAside}
-                  {role === "Examiner" && ExaminerAside}
-                </ul>
+                <ul className="k-menu__nav ">{AdminAside}</ul>
               </div>
             </div>
 
             <AsideFooter />
-
-            {/* <!-- end:: Aside --> */}
           </div>
-
-          {/* <!-- end:: Aside --> */}
         </div>
       </div>
     </React.Fragment>

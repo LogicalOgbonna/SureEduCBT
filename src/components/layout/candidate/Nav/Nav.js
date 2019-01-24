@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
 import { connect } from "react-redux";
+import { logout } from "../../../../actions/auth";
 
-const Nav = props => {
+const Nav = ({ logout }) => {
   const userNav = (
     <div
       className="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper"
@@ -24,176 +25,6 @@ const Nav = props => {
         {/* <!-- end: Header Menu --> */}
         {/* <!-- begin:: Header Topbar --> */}
         <div className="k-header__topbar">
-          {/* <!--begin: Notifications --> */}
-          <div className="k-header__topbar-item dropdown">
-            <div
-              className="k-header__topbar-wrapper"
-              data-toggle="dropdown"
-              data-offset="30px -2px"
-            >
-              <span className="k-header__topbar-icon">
-                <i className="flaticon2-bell-alarm-symbol" />
-              </span>
-              <span className="k-badge k-badge--dot k-badge--notify k-badge--sm k-badge--brand" />
-            </div>
-            <div className="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
-              <div
-                className="k-head"
-                style={{
-                  backgroundImage: "url(../assets/media/misc/head_bg_sm.jpg)"
-                }}
-              >
-                <h3 className="k-head__title">User Notifications</h3>
-                <div className="k-head__sub">
-                  <span className="k-head__desc">23 new notifications</span>
-                </div>
-              </div>
-              <div
-                className="k-notification k-margin-t-30 k-margin-b-20 k-scroll"
-                data-scroll="true"
-                data-height="270"
-                data-mobile-height="220"
-              >
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-line-chart k-font-success" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New order has been received
-                    </div>
-                    <div className="k-notification__item-time">2 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-box-1 k-font-brand" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New customer is registered
-                    </div>
-                    <div className="k-notification__item-time">3 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-chart2 k-font-danger" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      Application has been approved
-                    </div>
-                    <div className="k-notification__item-time">3 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-image-file k-font-warning" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New file has been uploaded
-                    </div>
-                    <div className="k-notification__item-time">5 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-bar-chart k-font-info" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New user feedback received
-                    </div>
-                    <div className="k-notification__item-time">8 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-pie-chart-2 k-font-success" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      System reboot has been successfully completed
-                    </div>
-                    <div className="k-notification__item-time">12 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-favourite k-font-focus" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New order has been placed
-                    </div>
-                    <div className="k-notification__item-time">15 hrs ago</div>
-                  </div>
-                </Link>
-                <Link
-                  to="#"
-                  className="k-notification__item k-notification__item--read"
-                >
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-safe k-font-primary" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      Company meeting canceled
-                    </div>
-                    <div className="k-notification__item-time">19 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-psd k-font-success" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New report has been received
-                    </div>
-                    <div className="k-notification__item-time">23 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon-download-1 k-font-danger" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      Finance report has been generated
-                    </div>
-                    <div className="k-notification__item-time">25 hrs ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon-security k-font-warning" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New customer comment recieved
-                    </div>
-                    <div className="k-notification__item-time">2 days ago</div>
-                  </div>
-                </Link>
-                <Link to="#" className="k-notification__item">
-                  <div className="k-notification__item-icon">
-                    <i className="flaticon2-pie-chart k-font-focus" />
-                  </div>
-                  <div className="k-notification__item-details">
-                    <div className="k-notification__item-title">
-                      New customer is registered
-                    </div>
-                    <div className="k-notification__item-time">3 days ago</div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          {/* <!--end: Notifications --> */}
-
           {/* <!--begin: User bar --> */}
           <div className="k-header__topbar-item k-header__topbar-item--user">
             <div
@@ -279,13 +110,9 @@ const Nav = props => {
                   </Link>
                 </li>
                 <li className="k-nav__item k-nav__item--custom k-margin-t-15">
-                  <Link
-                    to="custom_user_login-v2.html"
-                    target="_blank"
-                    className="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold"
-                  >
+                  <button onClick={() => logout()} className="btn btn-primary">
                     Sign Out
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -299,4 +126,7 @@ const Nav = props => {
   return <React.Fragment>{userNav}</React.Fragment>;
 };
 
-export default Nav;
+export default connect(
+  null,
+  { logout }
+)(Nav);

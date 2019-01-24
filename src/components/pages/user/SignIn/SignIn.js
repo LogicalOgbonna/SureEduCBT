@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import validator from "validator"
 import { connect } from 'react-redux';
-import { login } from '../../../actions/auth';
+import { login } from '../../../../actions/auth';
 
 
 import "./SignIn.css";
